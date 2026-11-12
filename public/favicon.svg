@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- White Caves Real Estate Logo - Favicon -->
+  <defs>
+    <style>
+      .cave-outer { fill: #D32F2F; }
+      .cave-inner { fill: white; }
+      .text { font-family: Arial, sans-serif; font-weight: bold; fill: #D32F2F; }
+    </style>
+  </defs>
+  
+  <!-- Outer cave arch -->
+  <path class="cave-outer" d="M 20,100 Q 20,40 100,10 Q 180,40 180,100 L 180,200 L 20,200 Z"/>
+  
+  <!-- Inner cave opening -->
+  <ellipse class="cave-inner" cx="100" cy="85" rx="45" ry="50"/>
+  
+  <!-- Highlight on cave -->
+  <path class="cave-inner" opacity="0.3" d="M 60,60 Q 70,40 85,45"/>
+</svg>
