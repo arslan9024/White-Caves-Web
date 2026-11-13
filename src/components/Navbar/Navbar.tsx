@@ -7,15 +7,16 @@ import { Menu } from 'lucide-react';
 import { NAV_LINKS, PORTAL_LINK, WHATSAPP_LINK } from '../../data/nav.data';
 import { NavLinks } from './NavLinks';
 import { MobileDrawer } from './MobileDrawer';
+import { ThemeToggle } from '../Theme';
 
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-zinc-950/85 border-b border-zinc-800/80 px-6 lg:px-12 py-4 flex items-center justify-between">
+      <header className="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-zinc-950/85 border-b border-zinc-200 dark:border-zinc-800/80 px-6 lg:px-12 py-4 flex items-center justify-between transition-colors">
         <Link href="/" className="flex items-center gap-3">
-          <div className="h-10 w-10 relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-900 flex items-center justify-center">
+          <div className="h-10 w-10 relative rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
             <Image
               src="/company-logo.jpg"
               alt="White Caves Logo"
@@ -26,7 +27,7 @@ export const Navbar = () => {
             />
           </div>
           <div>
-            <span className="text-lg font-bold tracking-tight text-white block leading-none">
+            <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white block leading-none">
               WHITE CAVES
             </span>
             <span className="text-[10px] tracking-widest text-[#EF4444] font-semibold uppercase">
@@ -38,13 +39,15 @@ export const Navbar = () => {
         {/* Desktop Navigation */}
         <NavLinks links={NAV_LINKS} className="hidden md:flex" />
 
-        {/* CTAs */}
+        {/* CTAs & Theme Toggle */}
         <div className="flex items-center gap-3">
+          <ThemeToggle />
+
           <a
             href={PORTAL_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border border-zinc-700 bg-zinc-900 text-zinc-200 hover:bg-zinc-800 transition"
+            className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition"
           >
             Agent Portal
           </a>
@@ -61,7 +64,7 @@ export const Navbar = () => {
           <button
             onClick={() => setMobileOpen(true)}
             aria-label="Open mobile menu"
-            className="md:hidden p-2 text-zinc-400 hover:text-white"
+            className="md:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
           >
             <Menu size={24} />
           </button>
