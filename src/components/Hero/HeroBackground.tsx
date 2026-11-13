@@ -10,7 +10,7 @@ export const HeroBackground = () => {
         priority
         className="object-cover opacity-25 scale-105 transform motion-safe:animate-pulse duration-1000"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-zinc-950 via-white/80 dark:via-zinc-950/80 to-white/40 dark:to-zinc-950/40" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-950/20 via-transparent to-transparent" />
     </div>
   );

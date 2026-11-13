@@ -15,11 +15,11 @@ export const HeroSection = () => {
         Dubai Sovereign Ultra-Prime Advisory
       </div>
 
-      <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl leading-[1.1] mb-6 text-white">
+      <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl leading-[1.1] mb-6 text-zinc-900 dark:text-white">
         Curated Luxury Living & Iconic Dubai Assets.
       </h1>
 
-      <p className="text-base sm:text-lg text-zinc-300 max-w-2xl mb-6 leading-relaxed">
+      <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-2xl mb-6 leading-relaxed">
         Exclusive villas, waterfront penthouses, and strategic off-plan investment portfolios across Palm Jumeirah, Downtown Dubai, and Tilal Al Ghaf.
       </p>
 

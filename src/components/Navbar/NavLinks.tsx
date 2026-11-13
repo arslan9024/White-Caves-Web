@@ -9,13 +9,13 @@ interface NavLinksProps {
 
 export const NavLinks = ({ links, onItemClick, className = '' }: NavLinksProps) => {
   return (
-    <nav className={`flex items-center gap-6 text-sm font-medium text-zinc-300 ${className}`}>
+    <nav className={`flex items-center gap-6 text-sm font-medium text-zinc-600 dark:text-zinc-300 ${className}`}>
       {links.map((link) => (
         <Link
           key={link.label}
           href={link.href}
           onClick={onItemClick}
-          className="hover:text-white transition-colors duration-200"
+          className="hover:text-zinc-900 dark:text-white transition-colors duration-200"
         >
           {link.label}
         </Link>

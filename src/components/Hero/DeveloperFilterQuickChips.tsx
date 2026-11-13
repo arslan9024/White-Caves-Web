@@ -9,7 +9,7 @@ export const DeveloperFilterQuickChips = () => {
       {developers.map((dev) => (
         <span
           key={dev}
-          className="px-3 py-1 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:border-red-500/50 hover:text-white transition cursor-default"
+          className="px-3 py-1 rounded-full bg-zinc-100/80 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-300 hover:border-red-500/50 hover:text-zinc-900 dark:text-white transition cursor-default"
         >
           {dev}
         </span>

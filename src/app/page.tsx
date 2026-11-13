@@ -16,7 +16,7 @@ import { TEAM_MEMBERS } from '@/data/team.data';
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-zinc-950 text-white selection:bg-[#EF4444] selection:text-white">
+    <div className="relative min-h-screen flex flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white selection:bg-[#EF4444] selection:text-zinc-900 dark:text-white">
       <Navbar />
       <main className="flex-1">
         <HeroSection />

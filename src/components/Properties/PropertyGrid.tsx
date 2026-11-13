@@ -12,10 +12,10 @@ export const PropertyGrid = ({ properties }: PropertyGridProps) => {
         <span className="text-xs uppercase tracking-widest text-[#EF4444] font-semibold">
           Curated Portfolios
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-2">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight mt-2">
           Featured Prime Residences
         </h2>
-        <p className="text-sm text-zinc-400 mt-3">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-3">
           Hand-picked luxury villas, branded off-plan residences, and penthouses validated by Dubai Land Department standards.
         </p>
       </div>

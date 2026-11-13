@@ -36,25 +36,25 @@ export const ToolsDashboard = () => {
         <span className="text-xs uppercase tracking-widest text-[#EF4444] font-semibold">
           Financial Intelligence
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-2">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight mt-2">
           Dubai Property ROI & Mortgage Engine
         </h2>
-        <p className="text-sm text-zinc-400 mt-3">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-3">
           Simulate projected net rental yields, financing schedules, and estimated returns based on current UAE bank mortgage rates.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Yield Calculator */}
-        <div className="p-8 rounded-2xl bg-zinc-900/60 border border-zinc-800">
-          <div className="flex items-center gap-2.5 mb-6 text-white font-bold text-lg">
+        <div className="p-8 rounded-2xl bg-zinc-100/60 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800">
+          <div className="flex items-center gap-2.5 mb-6 text-zinc-900 dark:text-white font-bold text-lg">
             <TrendingUp className="text-[#EF4444]" size={20} />
             <h3>Rental Yield & Cap Rate Model</h3>
           </div>
 
           <div className="space-y-5">
             <div>
-              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-300">
+              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-600 dark:text-zinc-300">
                 <span>Asset Purchase Price</span>
                 <span className="text-red-400 font-bold">{formatAED(propertyPrice)}</span>
               </div>
@@ -70,7 +70,7 @@ export const ToolsDashboard = () => {
             </div>
 
             <div>
-              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-300">
+              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-600 dark:text-zinc-300">
                 <span>Estimated Annual Rent</span>
                 <span className="text-red-400 font-bold">{formatAED(expectedRent)}</span>
               </div>
@@ -85,13 +85,13 @@ export const ToolsDashboard = () => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-800">
-              <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 text-center">
-                <span className="text-[11px] uppercase tracking-wider text-zinc-400 block">Gross Yield</span>
+            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+              <div className="p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-center">
+                <span className="text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 block">Gross Yield</span>
                 <span className="text-2xl font-black text-emerald-400 mt-1 block">{grossYield}%</span>
               </div>
-              <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 text-center">
-                <span className="text-[11px] uppercase tracking-wider text-zinc-400 block">Net Est. Yield</span>
+              <div className="p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-center">
+                <span className="text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 block">Net Est. Yield</span>
                 <span className="text-2xl font-black text-yellow-400 mt-1 block">{netEstimatedYield}%</span>
               </div>
             </div>
@@ -99,15 +99,15 @@ export const ToolsDashboard = () => {
         </div>
 
         {/* Mortgage Calculator */}
-        <div className="p-8 rounded-2xl bg-zinc-900/60 border border-zinc-800">
-          <div className="flex items-center gap-2.5 mb-6 text-white font-bold text-lg">
+        <div className="p-8 rounded-2xl bg-zinc-100/60 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800">
+          <div className="flex items-center gap-2.5 mb-6 text-zinc-900 dark:text-white font-bold text-lg">
             <Calculator className="text-[#EF4444]" size={20} />
             <h3>UAE Mortgage Repayment Schedule</h3>
           </div>
 
           <div className="space-y-5">
             <div>
-              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-300">
+              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-600 dark:text-zinc-300">
                 <span>Down Payment ({downPaymentPct}%)</span>
                 <span className="text-red-400 font-bold">{formatAED((propertyPrice * downPaymentPct) / 100)}</span>
               </div>
@@ -123,9 +123,9 @@ export const ToolsDashboard = () => {
             </div>
 
             <div>
-              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-300">
+              <div className="flex justify-between text-xs font-semibold mb-2 text-zinc-600 dark:text-zinc-300">
                 <span>Financing Rate ({interestRate}%)</span>
-                <span className="text-zinc-400">Tenure: {loanTenureYears} Years</span>
+                <span className="text-zinc-500 dark:text-zinc-400">Tenure: {loanTenureYears} Years</span>
               </div>
               <input
                 type="range"
@@ -138,8 +138,8 @@ export const ToolsDashboard = () => {
               />
             </div>
 
-            <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 text-center mt-4">
-              <span className="text-[11px] uppercase tracking-wider text-zinc-400 block">Estimated Monthly Installment</span>
+            <div className="p-4 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-center mt-4">
+              <span className="text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 block">Estimated Monthly Installment</span>
               <span className="text-3xl font-black text-[#EF4444] mt-1 block">AED {Number(monthlyMortgage).toLocaleString()}</span>
               <span className="text-[10px] text-zinc-500 mt-1 block">*Excludes DLD 4% transfer fee and trustee charges.</span>
             </div>

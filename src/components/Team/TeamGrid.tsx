@@ -12,10 +12,10 @@ export const TeamGrid = ({ members }: TeamGridProps) => {
         <span className="text-xs uppercase tracking-widest text-[#EF4444] font-semibold">
           Leadership & Advisory
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-2">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight mt-2">
           Meet Our Prime Specialists
         </h2>
-        <p className="text-sm text-zinc-400 mt-3">
+        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-3">
           Over two decades of proven transactional intelligence across luxury off-plan, resale, and institutional acquisitions.
         </p>
       </div>

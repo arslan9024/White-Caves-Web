@@ -32,7 +32,7 @@ export const MobileDrawer = ({ isOpen, onClose, links }: MobileDrawerProps) => {
           <button
             onClick={onClose}
             aria-label="Close navigation menu"
-            className="p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+            className="p-2 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-900 dark:text-white"
           >
             ✕
           </button>
@@ -65,7 +65,7 @@ export const MobileDrawer = ({ isOpen, onClose, links }: MobileDrawerProps) => {
           href={WHATSAPP_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full text-center py-3 text-xs font-semibold uppercase tracking-wider rounded-md bg-[#EF4444] text-white hover:bg-red-600 shadow-md shadow-red-500/20"
+          className="w-full text-center py-3 text-xs font-semibold uppercase tracking-wider rounded-md bg-[#EF4444] text-zinc-900 dark:text-white hover:bg-red-600 shadow-md shadow-red-500/20"
         >
           Inquire via WhatsApp
         </a>

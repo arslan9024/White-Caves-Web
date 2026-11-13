@@ -8,7 +8,7 @@ export const PropertyBadge = ({ status, featured, dldValidated }: PropertyBadgeP
   return (
     <div className="absolute top-3 left-3 z-10 flex flex-wrap gap-1.5">
       {featured && (
-        <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white shadow-sm">
+        <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-600 text-zinc-900 dark:text-white shadow-sm">
           ★ Featured
         </span>
       )}
@@ -17,7 +17,7 @@ export const PropertyBadge = ({ status, featured, dldValidated }: PropertyBadgeP
           DLD Verified
         </span>
       )}
-      <span className="px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-wider bg-zinc-900/80 text-zinc-300 border border-zinc-700/50 backdrop-blur-sm">
+      <span className="px-2 py-0.5 rounded text-[10px] font-medium uppercase tracking-wider bg-zinc-100/80 dark:bg-zinc-900/80 text-zinc-600 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700/50 backdrop-blur-sm">
         {status}
       </span>
     </div>

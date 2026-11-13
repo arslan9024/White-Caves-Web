@@ -47,7 +47,7 @@ export const Navbar = () => {
             href={PORTAL_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-800 transition"
+            className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-md border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-200 dark:bg-zinc-800 transition"
           >
             Agent Portal
           </a>
@@ -55,7 +55,7 @@ export const Navbar = () => {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-md bg-[#EF4444] text-white hover:bg-red-600 shadow-md shadow-red-500/20 transition"
+            className="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-md bg-[#EF4444] text-zinc-900 dark:text-white hover:bg-red-600 shadow-md shadow-red-500/20 transition"
           >
             Inquire Now
           </a>
@@ -64,7 +64,7 @@ export const Navbar = () => {
           <button
             onClick={() => setMobileOpen(true)}
             aria-label="Open mobile menu"
-            className="md:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+            className="md:hidden p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-900 dark:text-white"
           >
             <Menu size={24} />
           </button>
