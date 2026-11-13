@@ -2,27 +2,45 @@
 
 import { useState } from 'react';
 import { Coins, Ruler, TrendingUp } from 'lucide-react';
+import {
+  SupportedCurrency,
+  SupportedUnit,
+  FX_RATES_TO_AED,
+  SUPPORTED_CURRENCIES,
+  SUPPORTED_UNITS,
+} from './currencyUnit.data';
 
-export type SupportedCurrency = 'AED' | 'USD' | 'EUR' | 'GBP';
-export type SupportedUnit = 'SqFt' | 'SqM';
+export interface CurrencyUnitBarProps {
+  onCurrencyChange?: (currency: SupportedCurrency) => void;
+  onUnitChange?: (unit: SupportedUnit) => void;
+  className?: string;
+}
 
-const FX_RATES: Record<SupportedCurrency, number> = {
-  AED: 1,
-  USD: 3.6725,
-  EUR: 3.98,
-  GBP: 4.65,
-};
-
-export const CurrencyUnitBar = () => {
+export const CurrencyUnitBar = ({
+  onCurrencyChange,
+  onUnitChange,
+  className = '',
+}: CurrencyUnitBarProps) => {
   const [currency, setCurrency] = useState<SupportedCurrency>('AED');
   const [unit, setUnit] = useState<SupportedUnit>('SqFt');
 
-  const currencies: SupportedCurrency[] = ['AED', 'USD', 'EUR', 'GBP'];
-  const units: SupportedUnit[] = ['SqFt', 'SqM'];
+  const handleCurrencySelect = (c: SupportedCurrency) => {
+    setCurrency(c);
+    onCurrencyChange?.(c);
+  };
+
+  const handleUnitSelect = (u: SupportedUnit) => {
+    setUnit(u);
+    onUnitChange?.(u);
+  };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 my-6">
-      <div className="w-full bg-zinc-100/80 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800/80 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div className={`w-full max-w-7xl mx-auto px-6 lg:px-12 my-6 ${className}`}>
+      <div
+        role="group"
+        aria-label="Currency and Measurement Switcher"
+        className="w-full bg-zinc-100/90 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 rounded-xl p-3 flex flex-wrap items-center justify-between gap-3 text-xs shadow-sm"
+      >
         {/* Currency Switcher */}
         <div className="flex items-center gap-2 flex-wrap">
           <span className="flex items-center gap-1.5 font-bold text-zinc-700 dark:text-zinc-300">
@@ -30,15 +48,16 @@ export const CurrencyUnitBar = () => {
             Valuation Currency:
           </span>
           <div className="flex bg-white dark:bg-zinc-950 p-0.5 rounded-lg border border-zinc-200 dark:border-zinc-800">
-            {currencies.map((c) => (
+            {SUPPORTED_CURRENCIES.map(c => (
               <button
                 key={c}
                 type="button"
-                onClick={() => setCurrency(c)}
+                onClick={() => handleCurrencySelect(c)}
+                aria-pressed={currency === c}
                 className={`px-2.5 py-1 rounded-md font-semibold transition ${
                   currency === c
-                    ? 'bg-[#EF4444] text-zinc-900 dark:text-white shadow-sm'
-                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-900 dark:text-white'
+                    ? 'bg-[#EF4444] text-white shadow-sm'
+                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
                 }`}
               >
                 {c}
@@ -47,9 +66,9 @@ export const CurrencyUnitBar = () => {
           </div>
 
           {currency !== 'AED' && (
-            <span className="text-[11px] text-zinc-500 dark:text-zinc-400 flex items-center gap-1">
-              <TrendingUp className="w-3 h-3 text-emerald-500 dark:text-emerald-400" />
-              1 {currency} ≈ {FX_RATES[currency].toFixed(2)} AED
+            <span className="text-[11px] text-zinc-600 dark:text-zinc-400 flex items-center gap-1 font-medium">
+              <TrendingUp className="w-3 h-3 text-emerald-500" />1 {currency} ≈{' '}
+              {(1 / FX_RATES_TO_AED[currency]).toFixed(3)} AED
             </span>
           )}
         </div>
@@ -57,19 +76,20 @@ export const CurrencyUnitBar = () => {
         {/* Dimension Unit Switcher */}
         <div className="flex items-center gap-2">
           <span className="flex items-center gap-1.5 font-bold text-zinc-700 dark:text-zinc-300">
-            <Ruler className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
+            <Ruler className="w-3.5 h-3.5 text-amber-500" />
             Area Unit:
           </span>
           <div className="flex bg-white dark:bg-zinc-950 p-0.5 rounded-lg border border-zinc-200 dark:border-zinc-800">
-            {units.map((u) => (
+            {SUPPORTED_UNITS.map(u => (
               <button
                 key={u}
                 type="button"
-                onClick={() => setUnit(u)}
+                onClick={() => handleUnitSelect(u)}
+                aria-pressed={unit === u}
                 className={`px-2.5 py-1 rounded-md font-semibold transition ${
                   unit === u
-                    ? 'bg-[#EF4444] text-zinc-900 dark:text-white shadow-sm'
-                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-900 dark:text-white'
+                    ? 'bg-[#EF4444] text-white shadow-sm'
+                    : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
                 }`}
               >
                 {u}
@@ -81,3 +101,5 @@ export const CurrencyUnitBar = () => {
     </div>
   );
 };
+
+export default CurrencyUnitBar;
