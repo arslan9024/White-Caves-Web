@@ -1,40 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { NAV_LINKS, PORTAL_LINK, WHATSAPP_LINK } from '../../data/nav.data';
 import { NavLinks } from './NavLinks';
 import { MobileDrawer } from './MobileDrawer';
 import { ThemeToggle } from '../Theme';
+import { BrandLogo } from '../Brand';
 
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-zinc-950/85 border-b border-zinc-200 dark:border-zinc-800/80 px-6 lg:px-12 py-4 flex items-center justify-between transition-colors">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="h-10 w-10 relative rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center">
-            <Image
-              src="/company-logo.jpg"
-              alt="White Caves Logo"
-              width={40}
-              height={40}
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div>
-            <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-white block leading-none">
-              WHITE CAVES
-            </span>
-            <span className="text-[10px] tracking-widest text-[#EF4444] font-semibold uppercase">
-              Real Estate LLC • Dubai
-            </span>
-          </div>
-        </Link>
+      <header className="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-zinc-950/85 border-b border-zinc-200 dark:border-zinc-800/80 px-6 lg:px-12 py-3.5 flex items-center justify-between transition-colors">
+        <BrandLogo variant="ring" />
 
         {/* Desktop Navigation */}
         <NavLinks links={NAV_LINKS} className="hidden md:flex" />

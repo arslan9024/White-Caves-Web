@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ShieldCheck, MapPin, Phone, Mail } from 'lucide-react';
 import { FooterNewsletter } from './FooterNewsletter';
 import { PORTAL_LINK } from '../../data/nav.data';
+import { BrandLogo } from '../Brand';
 
 export const Footer = () => {
   return (
@@ -9,11 +10,8 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-zinc-200/80 dark:border-zinc-800/80">
         {/* Col 1 */}
         <div>
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded bg-[#EF4444] text-zinc-900 dark:text-white font-bold flex items-center justify-center text-sm">
-              WC
-            </div>
-            <span className="text-base font-bold text-zinc-900 dark:text-white tracking-wide">WHITE CAVES</span>
+          <div className="mb-4">
+            <BrandLogo variant="compact" />
           </div>
           <p className="leading-relaxed mb-4 text-zinc-500 dark:text-zinc-400">
             Dubai's premier sovereign luxury brokerage delivering secondary market, off-plan, and institutional portfolio acquisitions.
