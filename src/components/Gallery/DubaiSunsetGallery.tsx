@@ -51,15 +51,15 @@ export const DubaiSunsetGallery = () => {
             <Camera size={22} />
           </div>
           <div>
-            <h3 className="text-2xl font-extrabold text-white tracking-tight">
+            <h3 className="text-2xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
               Dubai Golden Hour Lifestyle Gallery
             </h3>
-            <p className="text-xs text-zinc-400 mt-0.5">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
               Curated editorial photography captured across Dubai's most prestigious coastal horizons.
             </p>
           </div>
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-amber-400">
+        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-amber-500 dark:text-amber-400">
           Editorial 4K Curation
         </span>
       </div>
@@ -69,7 +69,7 @@ export const DubaiSunsetGallery = () => {
           <div
             key={photo.id}
             onClick={() => setSelectedPhoto(photo)}
-            className="group relative h-64 rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-800 hover:border-red-500/50 shadow-xl transition-all cursor-pointer"
+            className="group relative h-64 rounded-2xl overflow-hidden bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 hover:border-red-500/50 shadow-xl transition-all cursor-pointer"
           >
             <Image
               src={photo.imageUrl}
