@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-zinc-950/85 border-b border-zinc-200 dark:border-zinc-800/80 px-6 lg:px-12 py-3.5 flex items-center justify-between transition-colors">
+      <header className="sticky top-0 z-40 backdrop-blur-md bg-white/90 dark:bg-zinc-950/90 border-b-2 border-[#EF4444] px-6 lg:px-12 h-[68px] flex items-center justify-between transition-colors shadow-sm">
         <BrandLogo variant="ring" />
 
         {/* Desktop Navigation */}
