@@ -47,7 +47,7 @@ export const DubaiSunsetGallery = () => {
     <section className="px-6 lg:px-12 py-20 max-w-7xl mx-auto w-full">
       <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 to-[#EF4444] text-white shadow-lg shadow-red-600/20">
+          <div className="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 to-[#EF4444] text-zinc-900 dark:text-white shadow-lg shadow-red-600/20">
             <Camera size={22} />
           </div>
           <div>
@@ -77,10 +77,10 @@ export const DubaiSunsetGallery = () => {
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-zinc-950 via-zinc-950/20 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
 
             <div className="absolute top-3 left-3">
-              <span className="px-2.5 py-1 rounded-full bg-zinc-950/80 border border-zinc-700 text-amber-300 text-[10px] font-bold backdrop-blur-md">
+              <span className="px-2.5 py-1 rounded-full bg-white/80 dark:bg-zinc-950/80 border border-zinc-300 dark:border-zinc-700 text-amber-300 text-[10px] font-bold backdrop-blur-md">
                 {photo.goldenHourTime}
               </span>
             </div>
@@ -89,10 +89,10 @@ export const DubaiSunsetGallery = () => {
               <span className="text-[10px] uppercase font-bold tracking-wider text-red-400 block mb-1">
                 {photo.tag}
               </span>
-              <h4 className="text-sm font-bold text-white group-hover:text-red-300 transition-colors">
+              <h4 className="text-sm font-bold text-zinc-900 dark:text-white group-hover:text-red-300 transition-colors">
                 {photo.title}
               </h4>
-              <p className="text-[11px] text-zinc-400 mt-0.5">{photo.location}</p>
+              <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">{photo.location}</p>
             </div>
           </div>
         ))}
@@ -102,15 +102,15 @@ export const DubaiSunsetGallery = () => {
       {selectedPhoto && (
         <div
           onClick={() => setSelectedPhoto(null)}
-          className="fixed inset-0 z-50 bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-4xl w-full bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl"
+            className="relative max-w-4xl w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl"
           >
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-zinc-950/80 text-zinc-400 hover:text-white"
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/80 dark:bg-zinc-950/80 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:text-white"
             >
               <X size={18} />
             </button>
@@ -122,10 +122,10 @@ export const DubaiSunsetGallery = () => {
                 className="object-cover"
               />
             </div>
-            <div className="p-6 bg-zinc-950 flex justify-between items-center">
+            <div className="p-6 bg-white dark:bg-zinc-950 flex justify-between items-center">
               <div>
-                <h4 className="text-lg font-bold text-white">{selectedPhoto.title}</h4>
-                <p className="text-xs text-zinc-400">{selectedPhoto.location} • {selectedPhoto.goldenHourTime}</p>
+                <h4 className="text-lg font-bold text-zinc-900 dark:text-white">{selectedPhoto.title}</h4>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">{selectedPhoto.location} • {selectedPhoto.goldenHourTime}</p>
               </div>
               <span className="px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-[#EF4444] text-xs font-bold">
                 {selectedPhoto.tag}

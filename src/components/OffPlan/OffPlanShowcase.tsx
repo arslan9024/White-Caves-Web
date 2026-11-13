@@ -16,12 +16,12 @@ export const OffPlanShowcase = ({ projects }: OffPlanShowcaseProps) => {
       {projects.map((project, idx) => (
         <article
           key={project.id}
-          className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-zinc-900/40 border border-zinc-800 rounded-3xl p-6 sm:p-8 hover:border-zinc-700 transition ${
+          className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-zinc-100/40 dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 hover:border-zinc-300 dark:border-zinc-700 transition ${
             idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
           }`}
         >
           {/* Image Block */}
-          <div className="lg:col-span-7 relative h-72 sm:h-96 rounded-2xl overflow-hidden bg-zinc-950">
+          <div className="lg:col-span-7 relative h-72 sm:h-96 rounded-2xl overflow-hidden bg-white dark:bg-zinc-950">
             <Image
               src={project.image}
               alt={project.name}
@@ -29,16 +29,16 @@ export const OffPlanShowcase = ({ projects }: OffPlanShowcaseProps) => {
               className="object-cover hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute top-4 left-4 z-10 flex gap-2">
-              <span className="px-3 py-1 rounded-full bg-red-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg">
+              <span className="px-3 py-1 rounded-full bg-red-600 text-zinc-900 dark:text-white font-bold text-xs uppercase tracking-wider shadow-lg">
                 {project.tag}
               </span>
-              <span className="px-3 py-1 rounded-full bg-zinc-950/80 border border-zinc-700 text-emerald-400 font-semibold text-xs backdrop-blur-md">
+              <span className="px-3 py-1 rounded-full bg-white/80 dark:bg-zinc-950/80 border border-zinc-300 dark:border-zinc-700 text-emerald-400 font-semibold text-xs backdrop-blur-md">
                 Pre-Launch Allocation
               </span>
             </div>
-            <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-zinc-950/85 backdrop-blur-md border border-zinc-800 flex justify-between items-center text-xs">
-              <span className="text-zinc-400">Starting From</span>
-              <span className="text-lg font-black text-white">{formatAED(project.startingPrice)}</span>
+            <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 flex justify-between items-center text-xs">
+              <span className="text-zinc-500 dark:text-zinc-400">Starting From</span>
+              <span className="text-lg font-black text-zinc-900 dark:text-white">{formatAED(project.startingPrice)}</span>
             </div>
           </div>
 
@@ -49,29 +49,29 @@ export const OffPlanShowcase = ({ projects }: OffPlanShowcaseProps) => {
                 <Building size={14} />
                 <span>{project.developer}</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
                 {project.name}
               </h2>
-              <p className="text-xs text-zinc-400 mt-1">{project.location}</p>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{project.location}</p>
             </div>
 
             {/* Spec highlights */}
-            <div className="grid grid-cols-2 gap-3 py-4 border-y border-zinc-800/80 text-xs">
-              <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800">
+            <div className="grid grid-cols-2 gap-3 py-4 border-y border-zinc-200/80 dark:border-zinc-800/80 text-xs">
+              <div className="p-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
                 <span className="text-[10px] uppercase font-bold text-zinc-500 block">Anticipated Handover</span>
-                <span className="font-semibold text-white mt-0.5 block flex items-center gap-1.5">
+                <span className="font-semibold text-zinc-900 dark:text-white mt-0.5 block flex items-center gap-1.5">
                   <Calendar size={13} className="text-[#EF4444]" />
                   {project.handoverDate}
                 </span>
               </div>
-              <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800">
+              <div className="p-3 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
                 <span className="text-[10px] uppercase font-bold text-zinc-500 block">Payment Structure</span>
-                <span className="font-semibold text-white mt-0.5 block">{project.paymentPlan}</span>
+                <span className="font-semibold text-zinc-900 dark:text-white mt-0.5 block">{project.paymentPlan}</span>
               </div>
             </div>
 
             {/* Bullet points */}
-            <ul className="space-y-2 text-xs text-zinc-300">
+            <ul className="space-y-2 text-xs text-zinc-600 dark:text-zinc-300">
               {project.highlights.map((h) => (
                 <li key={h} className="flex items-center gap-2">
                   <Sparkles size={13} className="text-amber-400 shrink-0" />
@@ -88,7 +88,7 @@ export const OffPlanShowcase = ({ projects }: OffPlanShowcaseProps) => {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-[#EF4444] hover:bg-red-600 text-white text-center shadow-lg shadow-red-600/20 transition flex items-center justify-center gap-2"
+                className="flex-1 py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-[#EF4444] hover:bg-red-600 text-zinc-900 dark:text-white text-center shadow-lg shadow-red-600/20 transition flex items-center justify-center gap-2"
               >
                 <span>Request Floor Plans</span>
                 <ArrowRight size={14} />

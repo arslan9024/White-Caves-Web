@@ -37,8 +37,8 @@ export const CurrencyUnitBar = () => {
                 onClick={() => setCurrency(c)}
                 className={`px-2.5 py-1 rounded-md font-semibold transition ${
                   currency === c
-                    ? 'bg-[#EF4444] text-white shadow-sm'
-                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                    ? 'bg-[#EF4444] text-zinc-900 dark:text-white shadow-sm'
+                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-900 dark:text-white'
                 }`}
               >
                 {c}
@@ -68,8 +68,8 @@ export const CurrencyUnitBar = () => {
                 onClick={() => setUnit(u)}
                 className={`px-2.5 py-1 rounded-md font-semibold transition ${
                   unit === u
-                    ? 'bg-[#EF4444] text-white shadow-sm'
-                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                    ? 'bg-[#EF4444] text-zinc-900 dark:text-white shadow-sm'
+                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-900 dark:text-white'
                 }`}
               >
                 {u}

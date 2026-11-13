@@ -33,16 +33,16 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
   return (
     <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 w-full">
       {/* Filter Ribbon */}
-      <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800 mb-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div className="p-6 rounded-2xl bg-zinc-100/60 dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 mb-12 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div className="flex flex-wrap items-center gap-3">
           {/* Status Chips */}
-          <div className="flex bg-zinc-950 p-1 rounded-xl border border-zinc-800">
+          <div className="flex bg-white dark:bg-zinc-950 p-1 rounded-xl border border-zinc-200 dark:border-zinc-800">
             {['All', 'Ready', 'Off-Plan'].map((st) => (
               <button
                 key={st}
                 onClick={() => setSelectedStatus(st)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                  selectedStatus === st ? 'bg-[#EF4444] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
+                  selectedStatus === st ? 'bg-[#EF4444] text-zinc-900 dark:text-white shadow-sm' : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:text-white'
                 }`}
               >
                 {st}
@@ -54,7 +54,7 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
           <select
             value={selectedLocation}
             onChange={(e) => setSelectedLocation(e.target.value)}
-            className="px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-white focus:outline-none focus:border-red-500"
+            className="px-3.5 py-2 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-white focus:outline-none focus:border-red-500"
           >
             {locations.map((loc) => (
               <option key={loc} value={loc}>
@@ -67,7 +67,7 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
-            className="px-3.5 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-xs text-white focus:outline-none focus:border-red-500"
+            className="px-3.5 py-2 rounded-xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-white focus:outline-none focus:border-red-500"
           >
             {types.map((tp) => (
               <option key={tp} value={tp}>
@@ -83,7 +83,7 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value as any)}
-            className="px-3 py-1.5 rounded-lg bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-red-500 font-medium"
+            className="px-3 py-1.5 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white focus:outline-none focus:border-red-500 font-medium"
           >
             <option value="featured">Featured First</option>
             <option value="price-asc">Price: Low to High</option>
@@ -93,8 +93,8 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
       </div>
 
       {/* Grid */}
-      <div className="flex justify-between items-center mb-6 text-xs text-zinc-400">
-        <span>Showing <strong className="text-white">{filteredProperties.length}</strong> Prime Residences</span>
+      <div className="flex justify-between items-center mb-6 text-xs text-zinc-500 dark:text-zinc-400">
+        <span>Showing <strong className="text-zinc-900 dark:text-white">{filteredProperties.length}</strong> Prime Residences</span>
       </div>
 
       {filteredProperties.length > 0 ? (
@@ -104,8 +104,8 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
           ))}
         </div>
       ) : (
-        <div className="text-center py-24 bg-zinc-900/30 border border-zinc-800 rounded-2xl">
-          <p className="text-zinc-400 text-sm">No residences match your selected filters.</p>
+        <div className="text-center py-24 bg-zinc-100/30 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 rounded-2xl">
+          <p className="text-zinc-500 dark:text-zinc-400 text-sm">No residences match your selected filters.</p>
           <button
             onClick={() => {
               setSelectedStatus('All');

@@ -12,20 +12,20 @@ export const metadata = {
 
 export default function OffPlanPage() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-zinc-950 text-white selection:bg-[#EF4444] selection:text-white">
+    <div className="relative min-h-screen flex flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white selection:bg-[#EF4444] selection:text-zinc-900 dark:text-white">
       <Navbar />
 
       <main className="flex-1">
         {/* Page Header */}
-        <header className="pt-20 pb-12 px-6 lg:px-12 bg-gradient-to-b from-zinc-900/60 to-transparent border-b border-zinc-800/80 text-center">
+        <header className="pt-20 pb-12 px-6 lg:px-12 bg-gradient-to-b from-zinc-900/60 to-transparent border-b border-zinc-200/80 dark:border-zinc-800/80 text-center">
           <div className="max-w-4xl mx-auto">
             <span className="text-xs uppercase tracking-widest text-[#EF4444] font-semibold">
               Strategic Developer Allocations
             </span>
-            <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight mt-2">
+            <h1 className="text-4xl sm:text-5xl font-black text-zinc-900 dark:text-white tracking-tight mt-2">
               Dubai Off-Plan Master Launches
             </h1>
-            <p className="text-sm text-zinc-400 mt-3 max-w-2xl mx-auto">
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-3 max-w-2xl mx-auto">
               Privileged pre-launch access, developer direct payment structures, and high-capital-growth master developments across the UAE.
             </p>
           </div>
