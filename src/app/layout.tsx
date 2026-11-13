@@ -47,8 +47,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 selection:bg-rose-600 selection:text-zinc-900 dark:text-white transition-colors duration-200">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <head>
+        {/* Migrate stale localStorage key so old "dark" value never overrides light default */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var old=localStorage.getItem('theme');if(old){localStorage.setItem('wc-theme',old);localStorage.removeItem('theme');}if(!localStorage.getItem('wc-theme')){localStorage.setItem('wc-theme','light');}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-200">
+        <ThemeProvider attribute="class" defaultTheme="light" storageKey="wc-theme" disableTransitionOnChange={false}>
           {children}
         </ThemeProvider>
       </body>
