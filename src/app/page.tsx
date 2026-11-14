@@ -2,7 +2,7 @@ import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/Hero';
 import { RegulatoryTrustStrip } from '@/components/TrustStrip';
 import { CurrencyUnitBar } from '@/components/CurrencyUnitBar';
-import { StatsBanner } from '@/components/MarketStats';
+import { StatsBanner, MarketPulseLiveTicker } from '@/components/MarketStats';
 import { PropertyGrid } from '@/components/Properties';
 import { AreaGuideGrid } from '@/components/AreaGuides';
 import { DubaiSunsetGallery } from '@/components/Gallery';
@@ -23,6 +23,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <HeroSection />
+        <MarketPulseLiveTicker />
         <RegulatoryTrustStrip />
         <CurrencyUnitBar />
         <StatsBanner stats={MARKET_STATS} />
