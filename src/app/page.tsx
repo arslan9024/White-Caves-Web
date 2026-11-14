@@ -5,6 +5,7 @@ import { CurrencyUnitBar } from '@/components/CurrencyUnitBar';
 import { StatsBanner, MarketPulseLiveTicker } from '@/components/MarketStats';
 import { PropertyGrid } from '@/components/Properties';
 import { AreaGuideGrid } from '@/components/AreaGuides';
+import { InteractiveMap } from '@/components/Map';
 import { DubaiSunsetGallery } from '@/components/Gallery';
 import { ToolsDashboard } from '@/components/Tools';
 import { TestimonialsSection } from '@/components/Testimonials';
@@ -29,6 +30,7 @@ export default function Home() {
         <StatsBanner stats={MARKET_STATS} />
         <PropertyGrid properties={FEATURED_PROPERTIES} />
         <AreaGuideGrid />
+        <InteractiveMap />
         <DubaiSunsetGallery />
         <ToolsDashboard />
         <TestimonialsSection />
