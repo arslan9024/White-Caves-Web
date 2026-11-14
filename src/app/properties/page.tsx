@@ -1,14 +1,20 @@
+import { Suspense } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { WhatsAppConciergePill } from '@/components/Concierge';
 import { QuickSearchModal } from '@/components/QuickSearch';
 import { PropertyDirectory } from '@/components/Directory/PropertyDirectory';
-import { ALL_PROPERTIES } from '@/data/all-properties.data';
+import { fetchVerifiedInventory } from '@/lib/inventoryApi';
 
 export const metadata = {
   title: 'Luxury Properties for Sale & Rent in Dubai | White Caves',
   description: 'Explore the complete verified collection of ultra-prime villas, waterfront penthouses, and branded residences across Dubai.',
 };
+
+async function PropertyDirectoryLoader() {
+  const verifiedProperties = await fetchVerifiedInventory();
+  return <PropertyDirectory initialProperties={verifiedProperties} />;
+}
 
 export default function PropertiesPage() {
   return (
@@ -31,8 +37,16 @@ export default function PropertiesPage() {
           </div>
         </header>
 
-        {/* Dynamic Directory */}
-        <PropertyDirectory initialProperties={ALL_PROPERTIES} />
+        {/* Dynamic Directory with Suspense for Next.js 16 Partial Prerendering */}
+        <Suspense
+          fallback={
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 text-center text-xs font-mono text-zinc-500">
+              Loading verified Dubai inventory...
+            </div>
+          }
+        >
+          <PropertyDirectoryLoader />
+        </Suspense>
       </main>
 
       <Footer />

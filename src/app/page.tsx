@@ -16,11 +16,12 @@ import { ContactCTA } from '@/components/ContactCTA';
 import { Footer } from '@/components/Footer';
 import { WhatsAppConciergePill } from '@/components/Concierge';
 import { QuickSearchModal } from '@/components/QuickSearch';
-import { FEATURED_PROPERTIES } from '@/data/properties.data';
+import { fetchVerifiedInventory } from '@/lib/inventoryApi';
 import { MARKET_STATS } from '@/data/market.data';
 import { TEAM_MEMBERS } from '@/data/team.data';
 
-export default function Home() {
+export default async function Home() {
+  const featuredProperties = await fetchVerifiedInventory({ featuredOnly: true });
   return (
     <div className="relative min-h-screen flex flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white selection:bg-[#EF4444] selection:text-zinc-900 dark:text-white transition-colors">
       <Navbar />
@@ -30,7 +31,7 @@ export default function Home() {
         <RegulatoryTrustStrip />
         <CurrencyUnitBar />
         <StatsBanner stats={MARKET_STATS} />
-        <PropertyGrid properties={FEATURED_PROPERTIES} />
+        <PropertyGrid properties={featuredProperties} />
         <AreaGuideGrid />
         <InteractiveMap />
         <InterestWizard />

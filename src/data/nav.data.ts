@@ -14,4 +14,4 @@ export const NAV_LINKS: NavItem[] = [
 ];
 
 export const PORTAL_LINK = 'https://app.whitecaves.com';
-export const WHATSAPP_LINK = 'https://wa.me/971500000000';
+export const WHATSAPP_LINK = 'https://wa.me/971585919024';

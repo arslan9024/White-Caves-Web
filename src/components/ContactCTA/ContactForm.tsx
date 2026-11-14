@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { captureWhatsAppLeadToLinda, SERVER_API_BASE_URL } from '../../lib/inventoryApi';
 
 export const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -13,6 +14,24 @@ export const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    void fetch(`${SERVER_API_BASE_URL}/api/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: `Transaction Objective: ${formData.interest}`,
+        inquiryType: 'buy',
+      }),
+    }).catch(() => {});
+    void captureWhatsAppLeadToLinda({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      category: 'HOT_LEAD',
+      inquiryText: `[Web Portal Inquiry] ${formData.interest} — ${formData.email}`,
+    });
     setSubmitted(true);
   };
 

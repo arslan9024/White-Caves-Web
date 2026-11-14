@@ -1,22 +1,35 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Property } from '@/types/property.types';
 import { PropertyCard } from '@/components/Properties/PropertyCard';
-import { Filter, SlidersHorizontal, Check } from 'lucide-react';
+import { fetchVerifiedInventory } from '@/lib/inventoryApi';
 
 interface PropertyDirectoryProps {
   initialProperties: Property[];
 }
 
 export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps) => {
+  const [properties, setProperties] = useState<Property[]>(initialProperties);
   const [selectedStatus, setSelectedStatus] = useState<string>('All');
   const [selectedType, setSelectedType] = useState<string>('All');
   const [selectedLocation, setSelectedLocation] = useState<string>('All');
   const [sortOption, setSortOption] = useState<'featured' | 'price-asc' | 'price-desc'>('featured');
 
+  useEffect(() => {
+    let active = true;
+    void fetchVerifiedInventory().then((liveProps) => {
+      if (active && Array.isArray(liveProps) && liveProps.length > 0) {
+        setProperties(liveProps);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const filteredProperties = useMemo(() => {
-    return initialProperties
+    return properties
       .filter((p) => (selectedStatus === 'All' ? true : p.status === selectedStatus))
       .filter((p) => (selectedType === 'All' ? true : p.type === selectedType))
       .filter((p) => (selectedLocation === 'All' ? true : p.location.includes(selectedLocation)))
@@ -25,7 +38,7 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
         if (sortOption === 'price-desc') return b.price - a.price;
         return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
       });
-  }, [initialProperties, selectedStatus, selectedType, selectedLocation, sortOption]);
+  }, [properties, selectedStatus, selectedType, selectedLocation, sortOption]);
 
   const locations = ['All', 'Palm Jumeirah', 'Downtown', 'Dubai Hills', 'Tilal Al Ghaf', 'DAMAC Lagoons'];
   const types = ['All', 'Luxury Villa', 'Penthouse', 'Branded Residence', 'Waterfront Apartment'];

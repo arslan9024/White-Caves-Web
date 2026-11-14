@@ -1,8 +1,11 @@
+'use client';
+
 import Image from 'next/image';
 import { Bed, Bath, Square, MapPin } from 'lucide-react';
 import { Property } from '../../types/property.types';
 import { PropertyBadge } from './PropertyBadge';
 import { WHATSAPP_LINK } from '../../data/nav.data';
+import { captureWhatsAppLeadToLinda } from '../../lib/inventoryApi';
 
 interface PropertyCardProps {
   property: Property;
@@ -14,6 +17,17 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
     currency: property.currency || 'AED',
     maximumFractionDigits: 0,
   }).format(property.price);
+
+  const handleWhatsAppLeadClick = () => {
+    void captureWhatsAppLeadToLinda({
+      propertyId: property.id,
+      propertyTitle: property.title,
+      location: property.location,
+      price: property.price,
+      category: 'HOT_LEAD_BUYER',
+      inquiryText: `Inquiring about ${property.title} (${property.location}) — ${formattedPrice}`,
+    });
+  };
 
   return (
     <article className="group rounded-xl overflow-hidden bg-zinc-100/60 dark:bg-zinc-900/60 border border-zinc-200/80 dark:border-zinc-800/80 hover:border-zinc-300 dark:border-zinc-700 hover:shadow-2xl hover:shadow-red-950/20 transition-all duration-300 flex flex-col">
@@ -69,6 +83,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           href={`${WHATSAPP_LINK}?text=Inquiring%20about%20${encodeURIComponent(property.title)}`}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleWhatsAppLeadClick}
           className="w-full text-center py-2.5 rounded-md text-xs font-semibold uppercase tracking-wider bg-zinc-200 dark:bg-zinc-800 hover:bg-[#EF4444] text-zinc-900 dark:text-white transition-colors"
         >
           Request Brochure & Details

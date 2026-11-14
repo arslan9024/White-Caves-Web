@@ -6,11 +6,16 @@ import {
   CONCIERGE_WHATSAPP_NUMBER,
   CONCIERGE_INQUIRY_OPTIONS,
 } from './concierge.data';
+import { captureWhatsAppLeadToLinda } from '../../lib/inventoryApi';
 
 export const WhatsAppConciergePill = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openWhatsApp = (customMessage: string) => {
+    void captureWhatsAppLeadToLinda({
+      category: 'VIP_CONCIERGE_LEAD',
+      inquiryText: customMessage,
+    });
     const url = `https://wa.me/${CONCIERGE_WHATSAPP_NUMBER}?text=${encodeURIComponent(customMessage)}`;
     window.open(url, '_blank', 'noopener,noreferrer');
     setIsOpen(false);
