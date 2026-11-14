@@ -7,7 +7,9 @@ import { PropertyGrid } from '@/components/Properties';
 import { AreaGuideGrid } from '@/components/AreaGuides';
 import { InteractiveMap } from '@/components/Map';
 import { DubaiSunsetGallery } from '@/components/Gallery';
+import { InterestWizard } from '@/components/InterestWizard';
 import { ToolsDashboard } from '@/components/Tools';
+import { MobileAppBanner } from '@/components/MobileAppBanner';
 import { TestimonialsSection } from '@/components/Testimonials';
 import { TeamGrid } from '@/components/Team';
 import { ContactCTA } from '@/components/ContactCTA';
@@ -31,8 +33,10 @@ export default function Home() {
         <PropertyGrid properties={FEATURED_PROPERTIES} />
         <AreaGuideGrid />
         <InteractiveMap />
+        <InterestWizard />
         <DubaiSunsetGallery />
         <ToolsDashboard />
+        <MobileAppBanner />
         <TestimonialsSection />
         <TeamGrid members={TEAM_MEMBERS} />
         <ContactCTA />
