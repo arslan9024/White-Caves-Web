@@ -4,6 +4,7 @@ import { RegulatoryTrustStrip } from '@/components/TrustStrip';
 import { CurrencyUnitBar } from '@/components/CurrencyUnitBar';
 import { StatsBanner, MarketPulseLiveTicker } from '@/components/MarketStats';
 import { PropertyGrid } from '@/components/Properties';
+import { FeaturesSection } from '@/components/Features';
 import { AreaGuideGrid } from '@/components/AreaGuides';
 import { InteractiveMap } from '@/components/Map';
 import { DubaiSunsetGallery } from '@/components/Gallery';
@@ -32,6 +33,7 @@ export default async function Home() {
         <CurrencyUnitBar />
         <StatsBanner stats={MARKET_STATS} />
         <PropertyGrid properties={featuredProperties} />
+        <FeaturesSection />
         <AreaGuideGrid />
         <InteractiveMap />
         <InterestWizard />

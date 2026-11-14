@@ -4,3 +4,4 @@ export * from './HeroCTA';
 export * from './HeroMetrics';
 export * from './LuxuryMultiTabSearchBar';
 export * from './DeveloperFilterQuickChips';
+export * from './DamacHills2ClusterBadge';
