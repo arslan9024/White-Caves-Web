@@ -1,135 +1,162 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
-import { Camera, Eye, X } from 'lucide-react';
+import Link from 'next/link';
+import { Camera, MapPin, ArrowUpRight, X } from 'lucide-react';
+import {
+  CURATED_DUBAI_SUNSET_PHOTOS,
+  type LuxurySunsetPhoto,
+} from './gallery.data';
 
-interface SunsetPhoto {
-  id: string;
-  title: string;
-  location: string;
-  imageUrl: string;
-  goldenHourTime: string;
-  tag: string;
+export interface DubaiSunsetGalleryProps {
+  photos?: LuxurySunsetPhoto[];
+  className?: string;
 }
 
-const SUNSET_PHOTOS: SunsetPhoto[] = [
-  {
-    id: 'sunset-palm-01',
-    title: 'Atlantis The Royal Sunset Horizon',
-    location: 'Palm Jumeirah, Crescent',
-    imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85',
-    goldenHourTime: '17:42 GST',
-    tag: 'Ultra-Prime Waterfront',
-  },
-  {
-    id: 'sunset-marina-02',
-    title: 'Dubai Marina Twilight Yacht Promenade',
-    location: 'Dubai Marina Channel',
-    imageUrl: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=85',
-    goldenHourTime: '17:50 GST',
-    tag: 'Skyline Reflections',
-  },
-  {
-    id: 'sunset-hills-03',
-    title: 'Emerald Fairways Golden Hour Vista',
-    location: 'Dubai Hills Estate',
-    imageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=85',
-    goldenHourTime: '17:38 GST',
-    tag: 'Championship Golf Haven',
-  },
-];
+export const DubaiSunsetGallery = ({
+  photos = CURATED_DUBAI_SUNSET_PHOTOS,
+  className = '',
+}: DubaiSunsetGalleryProps) => {
+  const [selectedPhoto, setSelectedPhoto] = useState<LuxurySunsetPhoto | null>(null);
 
-export const DubaiSunsetGallery = () => {
-  const [selectedPhoto, setSelectedPhoto] = useState<SunsetPhoto | null>(null);
+  const handleClose = useCallback(() => {
+    setSelectedPhoto(null);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        handleClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedPhoto, handleClose]);
 
   return (
-    <section className="px-6 lg:px-12 py-20 max-w-7xl mx-auto w-full">
+    <section
+      aria-label="Curated Dubai Prime Sunset Photography"
+      className={`px-6 lg:px-12 py-20 max-w-7xl mx-auto w-full ${className}`}
+    >
       <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 to-[#EF4444] text-zinc-900 dark:text-white shadow-lg shadow-red-600/20">
+          <div className="p-2.5 rounded-xl bg-gradient-to-tr from-amber-500 to-[#EF4444] text-white shadow-lg shadow-red-600/20">
             <Camera size={22} />
           </div>
           <div>
             <h3 className="text-2xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
-              Dubai Golden Hour Lifestyle Gallery
+              Dubai Marina &amp; Palm Jumeirah Sunset Curation
             </h3>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-              Curated editorial photography captured across Dubai's most prestigious coastal horizons.
+              High-resolution golden hour photography captured across Dubai&apos;s prime waterfronts.
             </p>
           </div>
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-amber-500 dark:text-amber-400">
-          Editorial 4K Curation
+        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-amber-600 dark:text-amber-400">
+          Target T-0010 · Verified 4K
         </span>
       </div>
 
+      {/* Grid of Curated Sunset Photos */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {SUNSET_PHOTOS.map((photo) => (
+        {photos.map((photo) => (
           <div
             key={photo.id}
+            role="button"
+            tabIndex={0}
+            aria-label={`Preview ${photo.title} in ${photo.location}`}
             onClick={() => setSelectedPhoto(photo)}
-            className="group relative h-64 rounded-2xl overflow-hidden bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 hover:border-red-500/50 shadow-xl transition-all cursor-pointer"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setSelectedPhoto(photo);
+              }
+            }}
+            className="group relative h-64 rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-[#EF4444]/60 shadow-xl transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF4444]"
           >
             <Image
               src={photo.imageUrl}
               alt={photo.title}
               fill
+              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-zinc-950 via-zinc-950/20 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
 
             <div className="absolute top-3 left-3">
-              <span className="px-2.5 py-1 rounded-full bg-white/80 dark:bg-zinc-950/80 border border-zinc-300 dark:border-zinc-700 text-amber-300 text-[10px] font-bold backdrop-blur-md">
+              <span className="px-2.5 py-1 rounded-full bg-zinc-950/80 border border-zinc-700/80 text-amber-300 text-[10px] font-bold backdrop-blur-md">
                 {photo.goldenHourTime}
               </span>
             </div>
 
-            <div className="absolute bottom-4 left-4 right-4">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-red-400 block mb-1">
+            <div className="absolute bottom-4 left-4 right-4 text-left">
+              <span className="text-[10px] uppercase font-extrabold tracking-wider text-red-400 block mb-1">
                 {photo.tag}
               </span>
-              <h4 className="text-sm font-bold text-zinc-900 dark:text-white group-hover:text-red-300 transition-colors">
+              <h4 className="text-sm font-bold text-white group-hover:text-red-300 transition-colors truncate drop-shadow-md">
                 {photo.title}
               </h4>
-              <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">{photo.location}</p>
+              <p className="flex items-center gap-1 text-[11px] text-zinc-300 mt-0.5">
+                <MapPin size={12} className="text-[#EF4444] shrink-0" />
+                <span className="truncate">{photo.location}</span>
+              </p>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Fullscreen Lightbox Modal */}
       {selectedPhoto && (
         <div
-          onClick={() => setSelectedPhoto(null)}
-          className="fixed inset-0 z-50 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="sunset-lightbox-title"
+          onClick={handleClose}
+          className="fixed inset-0 z-50 bg-zinc-950/90 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-200"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-4xl w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl"
+            className="relative max-w-4xl w-full bg-zinc-900 border border-zinc-700 rounded-3xl overflow-hidden shadow-2xl"
           >
             <button
-              onClick={() => setSelectedPhoto(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/80 dark:bg-zinc-950/80 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:text-white"
+              type="button"
+              onClick={handleClose}
+              aria-label="Close photo preview"
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-zinc-950/80 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors"
             >
               <X size={18} />
             </button>
-            <div className="relative h-96 sm:h-[500px] w-full">
+            <div className="relative h-80 sm:h-[500px] w-full">
               <Image
                 src={selectedPhoto.imageUrl}
                 alt={selectedPhoto.title}
                 fill
+                sizes="(max-width: 1024px) 100vw, 896px"
                 className="object-cover"
               />
             </div>
-            <div className="p-6 bg-white dark:bg-zinc-950 flex justify-between items-center">
+            <div className="p-6 bg-zinc-950 flex flex-wrap justify-between items-center gap-4">
               <div>
-                <h4 className="text-lg font-bold text-zinc-900 dark:text-white">{selectedPhoto.title}</h4>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">{selectedPhoto.location} • {selectedPhoto.goldenHourTime}</p>
+                <span className="text-xs text-red-400 font-extrabold uppercase tracking-wider">
+                  {selectedPhoto.tag} · {selectedPhoto.goldenHourTime}
+                </span>
+                <h4 id="sunset-lightbox-title" className="text-lg font-extrabold text-white mt-0.5">
+                  {selectedPhoto.title}
+                </h4>
+                <p className="text-xs text-zinc-400 flex items-center gap-1 mt-0.5">
+                  <MapPin size={13} className="text-[#EF4444]" />
+                  {selectedPhoto.location} · <span className="italic">{selectedPhoto.curatedBy}</span>
+                </p>
               </div>
-              <span className="px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-[#EF4444] text-xs font-bold">
-                {selectedPhoto.tag}
-              </span>
+              <Link
+                href={`/properties?community=${selectedPhoto.communitySlug}`}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#EF4444] hover:bg-red-600 text-white text-xs font-bold transition-colors"
+              >
+                Explore Community
+                <ArrowUpRight size={14} />
+              </Link>
             </div>
           </div>
         </div>
