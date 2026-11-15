@@ -26,6 +26,8 @@ import { buildRealEstateListingJsonLd } from '@/lib/realEstateJsonLd';
 import { buildPropertyOgMetadata } from '@/lib/ogMetadata';
 import { simulateUaeMortgage } from '@/lib/mortgageSimulator';
 import { convertFromAed } from '@/lib/currencyConverter';
+import { buildBlurDataUrl } from '@/lib/imageBlur';
+import { isValidVirtualTourUrl } from '@/lib/tourEmbedValidator';
 import { WHATSAPP_LINK } from '@/data/nav.data';
 
 interface PropertyDetailPageProps {

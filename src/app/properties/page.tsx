@@ -6,6 +6,8 @@ import { QuickSearchModal } from '@/components/QuickSearch';
 import { PropertyDirectory } from '@/components/Directory/PropertyDirectory';
 import { fetchVerifiedInventory } from '@/lib/inventoryApi';
 
+export const revalidate = 300;
+
 export const metadata = {
   title: 'Luxury Properties for Sale & Rent in Dubai | White Caves',
   description: 'Explore the complete verified collection of ultra-prime villas, waterfront penthouses, and branded residences across Dubai.',
