@@ -5,12 +5,13 @@ export interface NavItem {
 }
 
 export const NAV_LINKS: NavItem[] = [
-  { label: 'Featured', href: '/#properties' },
-  { label: 'All Properties', href: '/properties' },
-  { label: 'Off-Plan Launches', href: '/off-plan' },
-  { label: 'ROI & Tools', href: '/#tools' },
-  { label: 'Our Experts', href: '/#team' },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Properties', href: '/properties' },
+  { label: 'Off-Plan', href: '/off-plan' },
+  { label: 'Services', href: '/services' },
+  { label: 'Tools & ROI', href: '/tools' },
+  { label: 'About', href: '/about' },
+  { label: 'Careers', href: '/careers' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const PORTAL_LINK = 'https://app.whitecaves.com';

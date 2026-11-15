@@ -24,9 +24,9 @@ export const FOOTER_QUICK_LINKS: FooterQuickLink[] = [
 ];
 
 export const FOOTER_LEGAL_LINKS: FooterQuickLink[] = [
-  { label: 'Privacy Policy', href: '/properties' },
-  { label: 'Terms of Service', href: '/properties' },
-  { label: 'RERA & DLD Disclaimer', href: '/off-plan' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms' },
+  { label: 'Property Tools & DLD Calculator', href: '/tools' },
 ];
 
 export const FOOTER_OFFICE_CONTACT: FooterOfficeContact = {
