@@ -24,6 +24,7 @@ export const FOOTER_QUICK_LINKS: FooterQuickLink[] = [
 ];
 
 export const FOOTER_LEGAL_LINKS: FooterQuickLink[] = [
+  { label: 'Broker Commission & Pricing', href: '/pricing', highlight: true },
   { label: 'Privacy Policy', href: '/privacy-policy' },
   { label: 'Terms of Service', href: '/terms' },
   { label: 'Property Tools & DLD Calculator', href: '/tools' },

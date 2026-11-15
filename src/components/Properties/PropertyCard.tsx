@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Bed, Bath, Square, MapPin } from 'lucide-react';
 import { Property } from '../../types/property.types';
 import { PropertyBadge } from './PropertyBadge';
@@ -58,7 +59,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
             <span>{property.location}</span>
           </div>
           <h3 className="font-bold text-base text-zinc-900 dark:text-white group-hover:text-red-400 transition-colors line-clamp-1">
-            {property.title}
+            <Link href={`/properties/${property.id}`}>{property.title}</Link>
           </h3>
         </div>
 
@@ -79,15 +80,23 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         </div>
 
         {/* CTA */}
-        <a
-          href={`${WHATSAPP_LINK}?text=Inquiring%20about%20${encodeURIComponent(property.title)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleWhatsAppLeadClick}
-          className="w-full text-center py-2.5 rounded-md text-xs font-semibold uppercase tracking-wider bg-zinc-200 dark:bg-zinc-800 hover:bg-[#EF4444] text-zinc-900 dark:text-white transition-colors"
-        >
-          Request Brochure & Details
-        </a>
+        <div className="grid grid-cols-2 gap-2">
+          <Link
+            href={`/properties/${property.id}`}
+            className="text-center py-2.5 rounded-md text-xs font-semibold uppercase tracking-wider border border-zinc-300 dark:border-zinc-700 hover:border-[#EF4444] text-zinc-900 dark:text-white transition-colors"
+          >
+            View Details
+          </Link>
+          <a
+            href={`${WHATSAPP_LINK}?text=Inquiring%20about%20${encodeURIComponent(property.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleWhatsAppLeadClick}
+            className="text-center py-2.5 rounded-md text-xs font-semibold uppercase tracking-wider bg-zinc-200 dark:bg-zinc-800 hover:bg-[#EF4444] hover:text-white text-zinc-900 dark:text-white transition-colors"
+          >
+            WhatsApp
+          </a>
+        </div>
       </div>
     </article>
   );
