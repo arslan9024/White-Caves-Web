@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Bed, Bath, Square, MapPin } from 'lucide-react';
@@ -7,17 +8,47 @@ import { Property } from '../../types/property.types';
 import { PropertyBadge } from './PropertyBadge';
 import { WHATSAPP_LINK } from '../../data/nav.data';
 import { captureWhatsAppLeadToLinda } from '../../lib/inventoryApi';
+import {
+  FX_RATES_TO_AED,
+  type SupportedCurrency,
+  type SupportedUnit,
+} from '../CurrencyUnitBar/currencyUnit.data';
 
 interface PropertyCardProps {
   property: Property;
 }
 
 export const PropertyCard = ({ property }: PropertyCardProps) => {
+  const [currency, setCurrency] = useState<SupportedCurrency>('AED');
+  const [unit, setUnit] = useState<SupportedUnit>('SqFt');
+
+  useEffect(() => {
+    const savedCurr = window.localStorage.getItem('wc_currency') as SupportedCurrency | null;
+    const savedUnit = window.localStorage.getItem('wc_unit') as SupportedUnit | null;
+    if (savedCurr && savedCurr in FX_RATES_TO_AED) setCurrency(savedCurr);
+    if (savedUnit === 'SqFt' || savedUnit === 'SqM') setUnit(savedUnit);
+
+    const handlePrefChange = (e: Event) => {
+      const detail = (e as CustomEvent<{ currency?: SupportedCurrency; unit?: SupportedUnit }>)
+        .detail;
+      if (detail?.currency) setCurrency(detail.currency);
+      if (detail?.unit) setUnit(detail.unit);
+    };
+    window.addEventListener('wc:preferences-change', handlePrefChange);
+    return () => window.removeEventListener('wc:preferences-change', handlePrefChange);
+  }, []);
+
+  const convertedPrice = Math.round(property.price / (FX_RATES_TO_AED[currency] || 1));
   const formattedPrice = new Intl.NumberFormat('en-AE', {
     style: 'currency',
-    currency: property.currency || 'AED',
+    currency,
     maximumFractionDigits: 0,
-  }).format(property.price);
+  }).format(convertedPrice);
+
+  const displayArea =
+    unit === 'SqM'
+      ? `${Math.round(property.sqft * 0.092903).toLocaleString()} sqm`
+      : `${property.sqft.toLocaleString()} sqft`;
 
   const handleWhatsAppLeadClick = () => {
     void captureWhatsAppLeadToLinda({
@@ -75,7 +106,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
           <div className="flex items-center gap-1.5">
             <Square size={14} className="text-zinc-500 dark:text-zinc-400" />
-            <span>{property.sqft.toLocaleString()} sqft</span>
+            <span>{displayArea}</span>
           </div>
         </div>
 

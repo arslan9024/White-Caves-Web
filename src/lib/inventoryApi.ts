@@ -76,6 +76,7 @@ export async function fetchVerifiedInventory(options?: {
     const res = await fetch(endpoint, {
       method: 'GET',
       headers: { Accept: 'application/json' },
+      signal: AbortSignal.timeout(1500),
       next: { revalidate: 60 },
     });
 
@@ -113,11 +114,14 @@ export async function captureWhatsAppLeadToLinda(payload: {
   category?: string;
 }): Promise<{ success: boolean; leadId?: string }> {
   try {
+    const idempotencyKey = `wc-lead-${payload.propertyId || 'general'}-${Date.now()}`;
     const res = await fetch(`${SERVER_API_BASE_URL}/api/v1/webhooks/linda/lead`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Idempotency-Key': idempotencyKey,
       },
+      signal: AbortSignal.timeout(1500),
       body: JSON.stringify({
         event: 'HOT_LEAD',
         name: payload.name || 'Web Portal VIP Visitor',

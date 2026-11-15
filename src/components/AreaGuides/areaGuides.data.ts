@@ -65,5 +65,4 @@ export const COMMUNITIES: Community[] = [
   },
 ];
 
-export const communityHref = (c: Community) =>
-  `/properties?community=${encodeURIComponent(c.name)}`;
+export const communityHref = (c: Community) => `/communities/${c.id}`;

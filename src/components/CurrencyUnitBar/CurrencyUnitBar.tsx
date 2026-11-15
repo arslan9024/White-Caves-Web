@@ -26,11 +26,19 @@ export const CurrencyUnitBar = ({
 
   const handleCurrencySelect = (c: SupportedCurrency) => {
     setCurrency(c);
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('wc_currency', c);
+      window.dispatchEvent(new CustomEvent('wc:preferences-change', { detail: { currency: c, unit } }));
+    }
     onCurrencyChange?.(c);
   };
 
   const handleUnitSelect = (u: SupportedUnit) => {
     setUnit(u);
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('wc_unit', u);
+      window.dispatchEvent(new CustomEvent('wc:preferences-change', { detail: { currency, unit: u } }));
+    }
     onUnitChange?.(u);
   };
 
