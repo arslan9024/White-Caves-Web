@@ -7,6 +7,7 @@ export interface NavItem {
 export const NAV_LINKS: NavItem[] = [
   { label: 'Properties', href: '/properties' },
   { label: 'Off-Plan', href: '/off-plan' },
+  { label: 'List Property', href: '/list-your-property' },
   { label: 'Services', href: '/services' },
   { label: 'Tools & ROI', href: '/tools' },
   { label: 'Pricing', href: '/pricing' },

@@ -27,7 +27,7 @@ export const WIZARD_OPTIONS: WizardOption[] = [
     icon: Building2,
     headline: 'Global VIP Marketing',
     description: 'Showcase your property to our private network of qualified international investors.',
-    targetHref: 'https://wa.me/97144483000?text=Hello%20White%20Caves%2C%20I%20want%20to%20list%20my%20property',
+    targetHref: '/list-your-property',
     badge: 'RERA Licensed Brokerage',
   },
   {

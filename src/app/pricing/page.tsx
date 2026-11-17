@@ -6,9 +6,9 @@ import { QuickSearchModal } from '@/components/QuickSearch';
 import { PricingDashboard } from '@/components/Pricing/PricingDashboard';
 
 export const metadata: Metadata = {
-  title: 'Broker Pricing & 100% Commission Split Plans | White Caves Real Estate',
+  title: 'Dubai Real Estate Fee Schedules & Advisory | White Caves',
   description:
-    'Explore White Caves Real Estate LLC broker membership plans: 100% commission retention, 95/5, 90/10, 85/15, and AED 0 Free 75/25 starter plans with UAE residence visa & RERA card support.',
+    'Explore transparent Dubai Land Department (DLD) and Ejari regulatory fee baselines for landlords, tenants, buyers, and brokers. Request a tailored commercial schedule.',
 };
 
 export default function PricingPage() {
@@ -17,22 +17,22 @@ export default function PricingPage() {
       <Navbar />
 
       <main className="flex-1">
-        <header className="pt-20 pb-14 px-6 lg:px-12 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-gradient-to-b from-zinc-900/60 to-transparent text-center">
+        <header className="pt-24 pb-12 px-6 lg:px-12 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-gradient-to-b from-zinc-50 to-transparent dark:from-zinc-900/60 dark:to-transparent text-center">
           <div className="max-w-4xl mx-auto">
             <span className="inline-block px-3 py-1 rounded-full bg-[#EF4444]/10 border border-[#EF4444]/30 text-[#EF4444] text-xs font-bold uppercase tracking-widest mb-4">
-              RERA ORN #12345 • Partner & Associate Tiers
+              RERA Regulated Brokerage • Transparent Advisory
             </span>
-            <h1 className="text-4xl sm:text-5xl font-black tracking-tight">
-              100% Commission & Dynamic Split Plans
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-zinc-900 dark:text-white">
+              Fee Schedules & Commercial Terms
             </h1>
-            <p className="text-base text-zinc-600 dark:text-zinc-400 mt-4 max-w-2xl mx-auto">
-              In-house salaried advisors operate on a 50/50 split with full UAE visa sponsorship, or
-              private freelance brokers can retain up to 100% commission under our RERA umbrella.
+            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mt-4 max-w-2xl mx-auto">
+              Clear regulatory standards and tailored commercial proposals for property owners,
+              tenants, international investors, and elite licensed brokers across Dubai.
             </p>
           </div>
         </header>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
           <PricingDashboard />
         </div>
       </main>
