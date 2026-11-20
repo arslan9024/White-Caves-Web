@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { ALL_PROPERTIES } from '@/data/all-properties.data';
 import { COMMUNITIES } from '@/components/AreaGuides/areaGuides.data';
+import { DH2_CLUSTERS_SEO } from '@/data/dh2Clusters.data';
 
 const BASE_URL = 'https://whitecaves.ae';
 
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     '',
     '/properties',
+    '/rent/damac-hills-2',
     '/off-plan',
     '/services',
     '/tools',
@@ -22,8 +24,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: now,
-    changeFrequency: route === '' || route === '/properties' ? 'daily' : 'weekly',
-    priority: route === '' ? 1.0 : route === '/properties' ? 0.9 : 0.8,
+    changeFrequency: route === '' || route === '/properties' || route === '/rent/damac-hills-2' ? 'daily' : 'weekly',
+    priority: route === '' ? 1.0 : route === '/rent/damac-hills-2' ? 0.95 : route === '/properties' ? 0.9 : 0.8,
+  }));
+
+  const dh2ClusterRoutes: MetadataRoute.Sitemap = DH2_CLUSTERS_SEO.map((c) => ({
+    url: `${BASE_URL}/rent/damac-hills-2/${c.slug}`,
+    lastModified: now,
+    changeFrequency: 'daily',
+    priority: 0.9,
   }));
 
   const propertyRoutes: MetadataRoute.Sitemap = ALL_PROPERTIES.map((prop) => ({
@@ -40,5 +49,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticRoutes, ...communityRoutes, ...propertyRoutes];
+  return [...staticRoutes, ...dh2ClusterRoutes, ...communityRoutes, ...propertyRoutes];
 }
