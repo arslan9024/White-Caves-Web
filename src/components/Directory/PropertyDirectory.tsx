@@ -40,8 +40,23 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
       });
   }, [properties, selectedStatus, selectedType, selectedLocation, sortOption]);
 
-  const locations = ['All', 'Palm Jumeirah', 'Downtown', 'Dubai Hills', 'Tilal Al Ghaf', 'DAMAC Lagoons'];
-  const types = ['All', 'Luxury Villa', 'Penthouse', 'Branded Residence', 'Waterfront Apartment'];
+  const locations = [
+    'All',
+    'DAMAC Hills 2',
+    'Palm Jumeirah',
+    'Downtown',
+    'Dubai Hills',
+    'Tilal Al Ghaf',
+    'DAMAC Lagoons',
+  ];
+  const types = [
+    'All',
+    'Townhouse',
+    'Luxury Villa',
+    'Penthouse',
+    'Branded Residence',
+    'Waterfront Apartment',
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12 w-full">
@@ -50,15 +65,15 @@ export const PropertyDirectory = ({ initialProperties }: PropertyDirectoryProps)
         <div className="flex flex-wrap items-center gap-3">
           {/* Status Chips */}
           <div className="flex bg-white dark:bg-zinc-950 p-1 rounded-xl border border-zinc-200 dark:border-zinc-800">
-            {['All', 'Ready', 'Off-Plan'].map((st) => (
+            {['All', 'For Rent', 'Ready', 'Off-Plan'].map((st) => (
               <button
                 key={st}
                 onClick={() => setSelectedStatus(st)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                  selectedStatus === st ? 'bg-[#EF4444] text-zinc-900 dark:text-white shadow-sm' : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:text-white'
+                  selectedStatus === st ? 'bg-[#EF4444] text-white shadow-sm' : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:text-white'
                 }`}
               >
-                {st}
+                {st === 'For Rent' ? '🔑 Rent' : st}
               </button>
             ))}
           </div>

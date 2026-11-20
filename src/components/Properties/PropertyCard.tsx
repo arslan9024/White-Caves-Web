@@ -79,6 +79,9 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-zinc-950 via-transparent to-transparent opacity-80" />
         <div className="absolute bottom-3 left-3 text-zinc-900 dark:text-white font-bold text-xl drop-shadow-md">
           {formattedPrice}
+          {property.status === 'For Rent' && (
+            <span className="text-xs font-normal text-zinc-300 ml-1">/year</span>
+          )}
         </div>
       </div>
 

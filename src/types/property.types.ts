@@ -8,8 +8,12 @@ export interface Property {
   bathrooms: number;
   sqft: number;
   type: string;
-  status: 'Ready' | 'Off-Plan' | 'Resale';
+  status: 'Ready' | 'Off-Plan' | 'Resale' | 'For Rent';
   featured?: boolean;
   dldValidated?: boolean;
   images: string[];
+  rentalPeriod?: 'Yearly' | 'Monthly';
+  cheques?: number;
+  cluster?: string;
+  furnished?: boolean;
 }
