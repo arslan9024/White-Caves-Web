@@ -10,6 +10,9 @@ export function buildPropertyOgMetadata(input: {
   return {
     title: `${input.title} | White Caves Real Estate`,
     description: input.description,
+    alternates: {
+      canonical: input.url,
+    },
     openGraph: {
       title: input.title,
       description: input.description,

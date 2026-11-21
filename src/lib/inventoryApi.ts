@@ -7,6 +7,9 @@
 import { Property } from '@/types/property.types';
 import { ALL_PROPERTIES } from '@/data/all-properties.data';
 import { FEATURED_PROPERTIES } from '@/data/properties.data';
+import { FALLBACK_WEB_RENTALS, type PublicRentalDto } from '@/data/publicRentals.data';
+
+export { FALLBACK_WEB_RENTALS, type PublicRentalDto };
 
 export const SERVER_API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -61,9 +64,6 @@ export function mapServerPropertyToWebProperty(raw: ServerPropertyRecord, idx = 
   };
 }
 
-/**
- * Fetch verified properties from White-Caves-Server (:5001) with graceful fallback
- */
 export async function fetchVerifiedInventory(options?: {
   featuredOnly?: boolean;
 }): Promise<Property[]> {
@@ -99,9 +99,79 @@ export async function fetchVerifiedInventory(options?: {
   }
 }
 
-/**
- * Route a public portal WhatsApp lead or property inquiry directly to Linda on White-Caves-Server (:5001)
- */
+export async function fetchPublicRentals(filters?: {
+  community?: string;
+  minRent?: number;
+  maxRent?: number;
+  bedrooms?: number;
+  cheques?: number;
+  sort?: string;
+}): Promise<PublicRentalDto[]> {
+  try {
+    const qs = new URLSearchParams();
+    if (filters?.community) qs.set('community', filters.community);
+    if (filters?.minRent) qs.set('minRent', String(filters.minRent));
+    if (filters?.maxRent) qs.set('maxRent', String(filters.maxRent));
+    if (filters?.bedrooms) qs.set('bedrooms', String(filters.bedrooms));
+    if (filters?.cheques) qs.set('cheques', String(filters.cheques));
+    if (filters?.sort) qs.set('sort', filters.sort);
+
+    const url = `${SERVER_API_BASE_URL}/api/public/properties/rent${qs.toString() ? `?${qs.toString()}` : ''}`;
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: { Accept: 'application/json' },
+      signal: AbortSignal.timeout(2000),
+      next: { revalidate: 30 },
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (Array.isArray(json?.data) && json.data.length > 0) {
+        return json.data as PublicRentalDto[];
+      }
+    }
+  } catch {
+    // fallback below
+  }
+
+  let list = [...FALLBACK_WEB_RENTALS];
+  if (filters?.community) {
+    const q = filters.community.toLowerCase();
+    list = list.filter(
+      p => p.community.toLowerCase().includes(q) || p.subCommunity.toLowerCase().includes(q)
+    );
+  }
+  if (filters?.minRent) list = list.filter(p => p.annualRentAed >= filters.minRent!);
+  if (filters?.maxRent) list = list.filter(p => p.annualRentAed <= filters.maxRent!);
+  if (filters?.bedrooms) list = list.filter(p => p.bedrooms === filters.bedrooms!);
+  if (filters?.cheques) list = list.filter(p => p.chequesCount >= filters.cheques!);
+  return list;
+}
+
+export async function fetchPublicRentalBySlug(slug: string): Promise<PublicRentalDto | null> {
+  try {
+    const res = await fetch(
+      `${SERVER_API_BASE_URL}/api/public/properties/${encodeURIComponent(slug)}`,
+      {
+        method: 'GET',
+        headers: { Accept: 'application/json' },
+        signal: AbortSignal.timeout(2000),
+        next: { revalidate: 30 },
+      }
+    );
+    if (res.ok) {
+      const json = await res.json();
+      if (json?.data) return json.data as PublicRentalDto;
+    }
+  } catch {
+    // fallback below
+  }
+  return (
+    FALLBACK_WEB_RENTALS.find(
+      p => p.slug.toLowerCase() === slug.toLowerCase() || p.id.toLowerCase() === slug.toLowerCase()
+    ) || null
+  );
+}
+
 export async function captureWhatsAppLeadToLinda(payload: {
   name?: string;
   phone?: string;

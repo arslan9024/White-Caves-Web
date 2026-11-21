@@ -6,6 +6,7 @@
     "dev": "next dev -p 3001",
     "dev:default": "next dev",
     "ports:check": "npx tsx ../secrets/ports.ts --check",
+    "typecheck": "tsc --noEmit",
     "build": "next build",
     "start": "next start -p 3001",
     "lint": "eslint"
