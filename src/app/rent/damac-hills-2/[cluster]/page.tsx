@@ -11,6 +11,36 @@ import {
 } from '@/data/dh2Clusters.data';
 import { ALL_PROPERTIES } from '@/data/all-properties.data';
 
+async function fetchLiveVerifiedVaultRentals(clusterSlug: string) {
+  try {
+    const res = await fetch(`http://localhost:5001/api/leasing-formula/feeds/portals.csv`, {
+      next: { revalidate: 60 },
+    });
+    if (!res.ok) return [];
+    const text = await res.text();
+    const rows = text.split('\n').slice(1).filter(Boolean);
+    return rows
+      .map(r => {
+        const cols = r.split(',').map(c => c.replace(/^"|"$/g, ''));
+        return {
+          id: cols[0],
+          title: cols[10],
+          price: `AED ${Number(cols[9] || 0).toLocaleString()}/year`,
+          beds: Number(cols[6] || 3),
+          baths: Number(cols[7] || 3),
+          sqft: Number(cols[8] || 1881),
+          cluster: cols[4],
+          slug: cols[4]?.toLowerCase().replace(/\s+/g, '-'),
+          image: cols[11],
+          source: 'LIVE_VAULT' as const,
+        };
+      })
+      .filter(p => p.slug === clusterSlug.toLowerCase());
+  } catch {
+    return [];
+  }
+}
+
 interface ClusterPageProps {
   params: Promise<{ cluster: string }>;
 }
