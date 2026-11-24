@@ -4,6 +4,7 @@ import { Footer } from '@/components/Footer';
 import { WhatsAppConciergePill } from '@/components/Concierge';
 import { QuickSearchModal } from '@/components/QuickSearch';
 import { CAREER_OPENINGS } from '@/data/corporate.data';
+import { LOCKED_12_DIRECTORATE_OPENINGS } from '@/data/bhaktiDirectorateOpenings.data';
 import { WHATSAPP_LINK } from '@/data/nav.data';
 
 export const metadata = {
@@ -32,6 +33,54 @@ export default function CareersPage() {
             </p>
           </div>
         </header>
+
+        {/* 12 Locked Corporate Directorates & 108 Division Manager Positions */}
+        <section className="px-6 lg:px-12 py-14 max-w-7xl mx-auto border-b border-zinc-200 dark:border-zinc-800">
+          <div className="mb-8">
+            <span className="text-xs uppercase tracking-widest text-[#EF4444] font-bold">
+              Bhakti 1-12-108 Executive Leadership Track
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-white mt-1">
+              12 Corporate Directorates &amp; 108 Division Manager Openings
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {LOCKED_12_DIRECTORATE_OPENINGS.map((dir) => {
+              const applyMsg = encodeURIComponent(
+                `Hello White Caves Recruitment! I would like to apply for ${dir.directorTitle} (${dir.deptCode} — ${dir.departmentName}).`
+              );
+              return (
+                <div
+                  key={dir.deptCode}
+                  className="p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 flex flex-col justify-between gap-4"
+                >
+                  <div>
+                    <div className="flex items-center justify-between text-[11px] font-bold mb-2">
+                      <span className="px-2 py-0.5 rounded bg-[#EF4444]/10 text-[#EF4444] font-mono">
+                        {dir.deptCode} · {dir.dirCode}
+                      </span>
+                      <span className="text-zinc-500">{dir.managerOpeningsCount} Mgr Slots</span>
+                    </div>
+                    <h3 className="text-sm font-extrabold text-zinc-900 dark:text-white">
+                      {dir.departmentName}
+                    </h3>
+                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                      {dir.directorTitle}
+                    </p>
+                  </div>
+                  <a
+                    href={`${WHATSAPP_LINK}?text=${applyMsg}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-[#EF4444] hover:bg-red-600 text-white text-xs font-bold transition"
+                  >
+                    <MessageCircle size={13} /> Apply for Directorate
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Open Positions */}
         <section className="px-6 lg:px-12 py-20 max-w-7xl mx-auto space-y-8">
