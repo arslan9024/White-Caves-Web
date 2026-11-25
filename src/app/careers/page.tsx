@@ -59,7 +59,9 @@ export default function CareersPage() {
                       <span className="px-2 py-0.5 rounded bg-[#EF4444]/10 text-[#EF4444] font-mono">
                         {dir.deptCode} · {dir.dirCode}
                       </span>
-                      <span className="text-zinc-500">{dir.managerOpeningsCount} Mgr Slots</span>
+                      <span className="text-zinc-500">
+                        {dir.managerOpeningsCount} Mgr · {dir.assistantManagerOpeningsCount} AM · {dir.supervisorOpeningsCount} Sup
+                      </span>
                     </div>
                     <h3 className="text-sm font-extrabold text-zinc-900 dark:text-white">
                       {dir.departmentName}
@@ -67,6 +69,11 @@ export default function CareersPage() {
                     <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
                       {dir.directorTitle}
                     </p>
+                    {dir.activeOperationalSupervisor && (
+                      <p className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 mt-2">
+                        Active AI Supervisor: {dir.activeOperationalSupervisor}
+                      </p>
+                    )}
                   </div>
                   <a
                     href={`${WHATSAPP_LINK}?text=${applyMsg}`}
